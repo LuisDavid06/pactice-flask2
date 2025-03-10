@@ -6,7 +6,7 @@
       <div class="card">
         <div class="card-header">
           <h1 class="text-center">
-            {% block title %} Crear tarea {% endblock %}
+            {% block title %} Editar tarea {% endblock %}
           </h1>
         </div>
 
@@ -19,14 +19,24 @@
                 class="form-control"
                 id="title"
                 name="title"
+                value="{{todo.title}}"
                 required
               />
             </div>
 
             <div class="form-group">
               <label for="password">Descripcion</label>
-              <textarea name="desc" id="desc" class="form-control"></textarea>
+              <textarea name="desc" id="desc" class="form-control">
+{{todo.desc}}</textarea
+              >
             </div>
+
+            <div class="form-group">
+              <label for="title">Completado</label>
+              <input type="checkbox" class="form-check-input" id="state"
+              name="state" {% if todo.state == true %} checked {%endif%} />
+            </div>
+
             <div class="text-center mt-2">
               <input type="submit" class="btn btn-primary" value="Guardar" />
               <a href="{{url_for('todo.index')}}" class="btn btn-secondary">

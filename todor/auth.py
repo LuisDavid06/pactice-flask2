@@ -56,6 +56,7 @@ def login():
 
     return render_template('auth/login.html') 
 
+# mantener la session iniciada
 @bp.before_app_request
 def load_logger_in_user():
     user_id = session.get('user_id')

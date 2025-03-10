@@ -2,7 +2,7 @@
 <section class="container-fluid">
   <nav class="navbar">
     <h1>{% block title %}Lista de tareas{% endblock %}</h1>
-    <a href="" class="btn btn-success">Nuevo</a>
+    <a href="{{url_for('todo.create')}}" class="btn btn-success">Nuevo</a>
   </nav>
 
   <table class="table">
@@ -21,12 +21,26 @@
           <h5>{{todo.title}}</h5>
           <p>{{todo.desc}}</p>
         </td>
-        <td>{{todo.desc}}</td>
         <td>
-          <a href="" class="btn btn-info btn-sm">Editar</a>
+          {%if todo.state == False%}
+          <span class="text-warning">Incompleto</span>
+          {%else%}
+          <span class="text-success">Completado</span>
+          {%endif%}
         </td>
         <td>
-          <a href="" class="btn btn-danger btn-sm">Eliminar</a>
+          <a
+            href="{{url_for('todo.updated', id = todo.id)}}"
+            class="btn btn-info btn-sm"
+            >Editar</a
+          >
+        </td>
+        <td>
+          <a
+            href="{{url_for('todo.delete', id = todo.id)}}"
+            class="btn btn-danger btn-sm"
+            >Eliminar</a
+          >
         </td>
       </tr>
       {%endif%} {%endfor%}
